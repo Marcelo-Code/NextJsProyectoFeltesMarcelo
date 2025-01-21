@@ -1,0 +1,40 @@
+.gridContainer {
+  display: grid;
+  grid-template-areas:
+    "image1 text1"
+    "text2 image2"; /* Imágenes arriba, textos abajo */
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+  gap: 16px; /* Espacio entre elementos */
+}
+
+.gridItem {
+  text-align: justify;
+  margin: auto;
+  padding: 10px;
+}
+
+/* Organiza las áreas de las imágenes y los textos */
+.gridItem:nth-child(1) {
+  grid-area: image1;
+}
+.gridItem:nth-child(2) {
+  grid-area: text1;
+}
+.gridItem:nth-child(3) {
+  grid-area: image2;
+}
+.gridItem:nth-child(4) {
+  grid-area: text2;
+}
+
+/* Ajusta para pantallas menores a 800px */
+@media (max-width: 800px) {
+  .gridContainer {
+    grid-template-areas:
+      "image1"
+      "text1"
+      "image2"
+      "text2"; /* Una columna, elementos apilados */
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+}
