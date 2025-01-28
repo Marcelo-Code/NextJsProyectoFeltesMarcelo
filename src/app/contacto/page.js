@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
-import Footer from "../components/layout/footer/Footer";
-import NavBar from "../components/layout/navBar/navBar";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import "./contacto.css";
+import Footer from "../components/layout/footer/Footer";
 
 export default function Contacto() {
   const [form, setForm] = useState({
@@ -32,7 +31,6 @@ export default function Contacto() {
 
   return (
     <>
-      <NavBar />
       <div className="contacto">
         <h2
           style={{

@@ -1,10 +1,9 @@
 import React from "react";
 import BurgerMenu from "../burgerMenu/BurgerMenu";
-import Badge from "@mui/material/Badge";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./navBar.css";
 import Image from "next/image";
 import Link from "next/link";
+import Carrito from "../carrito/Carrito";
 
 const NavBar = () => {
   return (
@@ -28,9 +27,7 @@ const NavBar = () => {
             <span className="title">Deco Design</span>
           </nav>
         </Link>
-        <Badge badgeContent={4} color="primary">
-          <ShoppingCartIcon sx={{ fontSize: 30 }} />
-        </Badge>
+        <Carrito />
       </header>
     </>
   );

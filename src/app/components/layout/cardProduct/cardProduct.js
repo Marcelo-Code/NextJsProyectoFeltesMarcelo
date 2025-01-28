@@ -28,7 +28,6 @@ const CardProduct = ({ id, title, price, category, img, description1 }) => {
     currency: "ARS",
   });
 
-  console.log(img);
   return (
     <Card sx={{ maxWidth: 345, height: 600, boxShadow: "0 0 15px black" }}>
       <CardMedia

@@ -1,42 +1,58 @@
 "use client";
 import { useEffect, useState } from "react";
-import NavBar from "../components/layout/navBar/navBar";
-import Footer from "../components/layout/footer/Footer";
-import { productos } from "../mock/productos";
 import CardProduct from "../components/layout/cardProduct/cardProduct";
+import { db } from "../fireBase/config";
+import { collection, getDocs } from "firebase/firestore/lite";
+import Footer from "../components/layout/footer/Footer";
 
 const Productos = () => {
-  const [filterProducts, setFilterProducts] = useState([]);
+  const [products, setProducts] = useState(null);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
-    setFilterProducts(productos);
+    const fetchProducts = async () => {
+      try {
+        const response = await getDocs(
+          collection(db, "DBProductosProyectoNextJs")
+        );
+        const array = response.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+        setProducts(array);
+      } catch (error) {
+        console.log("Error en el fetch de productos", error);
+      }
+    };
+    fetchProducts();
   }, []);
 
   // Función para manejar el filtro de categoría
-  const handleFilter = () => {
-    if (selectedCategory) {
-      // Filtra los productos por la categoría seleccionada
-      const filtered = productos.filter(
-        (producto) => producto.category === selectedCategory
-      );
-      setFilterProducts(filtered);
-      // Redirige a la página de la categoría seleccionada
-      // router.push(`/productos/${selectedCategory}`);
-    } else {
-      // Si no hay categoría seleccionada, muestra todos los productos
-      setFilterProducts(productos);
-    }
-  };
 
   // Llamar a handleFilter cuando la categoría cambia
   useEffect(() => {
+    const handleFilter = () => {
+      if (selectedCategory) {
+        // Filtra los productos por la categoría seleccionada
+        const filtered = products.filter(
+          (producto) => producto.category === selectedCategory
+        );
+        setFilteredProducts(filtered);
+        // Redirige a la página de la categoría seleccionada
+        // router.push(`/productos/${selectedCategory}`);
+      } else {
+        // Si no hay categoría seleccionada, muestra todos los productos
+        setFilteredProducts(products);
+      }
+    };
+
     handleFilter();
-  }, [selectedCategory]);
+  }, [selectedCategory, products]);
+
+  if (!filteredProducts) return;
 
   return (
     <>
-      <NavBar />
       <div
         style={{
           width: "100%",
@@ -53,7 +69,7 @@ const Productos = () => {
         >
           <option value="">Selecciona una categoría</option>
           {Array.from(
-            new Set(productos.map((producto) => producto.category))
+            new Set(filteredProducts.map((producto) => producto.category))
           ).map((category, index) => (
             <option key={index} value={category}>
               {category}
@@ -71,7 +87,7 @@ const Productos = () => {
           gap: "30px",
         }}
       >
-        {filterProducts.map((producto) => (
+        {filteredProducts.map((producto) => (
           <CardProduct key={producto.id} {...producto} />
         ))}
       </div>

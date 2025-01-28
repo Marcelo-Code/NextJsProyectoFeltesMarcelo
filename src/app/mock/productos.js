@@ -10,6 +10,7 @@ export const productos = [
     description2: "Ideal para salas de estar modernas y acogedoras.",
     description3: "Fácil de limpiar y mantener.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ export const productos = [
     description2: "Espacio ideal para 6 personas.",
     description3: "Perfecta para cenas familiares y reuniones.",
     warranty: "3 años de garantía",
+    stock: 10,
   },
   {
     id: 3,
@@ -33,6 +35,7 @@ export const productos = [
     description2: "Diseño moderno que se adapta a tu postura.",
     description3: "Ideal para largas horas de trabajo.",
     warranty: "1 año de garantía",
+    stock: 10,
   },
   {
     id: 4,
@@ -45,6 +48,7 @@ export const productos = [
     description2: "Diseño minimalista para cualquier ambiente.",
     description3: "Fácil de montar y mantener.",
     warranty: "1 año de garantía",
+    stock: 10,
   },
   {
     id: 5,
@@ -57,6 +61,7 @@ export const productos = [
     description2: "Perfecta para descansar y disfrutar de una noche tranquila.",
     description3: "Con materiales que garantizan durabilidad.",
     warranty: "5 años de garantía",
+    stock: 10,
   },
   {
     id: 6,
@@ -70,6 +75,7 @@ export const productos = [
       "Ideal para mantener tus objetos personales cerca de la cama.",
     description3: "Diseño sencillo que combina con cualquier estilo.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 7,
@@ -82,6 +88,7 @@ export const productos = [
     description2: "Perfecto para familias grandes o reuniones sociales.",
     description3: "Resistente y duradero.",
     warranty: "3 años de garantía",
+    stock: 10,
   },
   {
     id: 8,
@@ -94,6 +101,7 @@ export const productos = [
     description2: "Ideal para organizar ropa y accesorios.",
     description3: "Construcción robusta y fácil de montar.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 9,
@@ -106,6 +114,7 @@ export const productos = [
     description2: "Diseñado para brindar la máxima comodidad.",
     description3: "Reclinable en varias posiciones.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 10,
@@ -118,6 +127,7 @@ export const productos = [
     description2: "Perfecto para almacenar libros y objetos decorativos.",
     description3: "Duradero y fácil de organizar.",
     warranty: "1 año de garantía",
+    stock: 10,
   },
   {
     id: 11,
@@ -130,6 +140,7 @@ export const productos = [
     description2: "Diseño moderno y funcional.",
     description3: "Ideal para oficinas en casa o espacios de trabajo.",
     warranty: "3 años de garantía",
+    stock: 10,
   },
   {
     id: 12,
@@ -143,6 +154,7 @@ export const productos = [
       "Perfecto para mantener el orden en la entrada o el vestidor.",
     description3: "Diseño práctico y sencillo.",
     warranty: "1 año de garantía",
+    stock: 10,
   },
   {
     id: 13,
@@ -155,6 +167,7 @@ export const productos = [
     description2: "Ideal para salones modernos.",
     description3: "Fácil de limpiar y resistente.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 14,
@@ -167,6 +180,7 @@ export const productos = [
     description2: "Combinación perfecta de confort y estilo.",
     description3: "Ideal para comidas familiares o cenas formales.",
     warranty: "1 año de garantía",
+    stock: 10,
   },
   {
     id: 15,
@@ -178,6 +192,7 @@ export const productos = [
     description2: "Combinación ideal para tu barra o cocina.",
     description3: "Duradero y fácil de ajustar.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 16,
@@ -189,6 +204,7 @@ export const productos = [
     description2: "Segura y cómoda para tu bebé.",
     description3: "Diseño que se adapta a cualquier habitación infantil.",
     warranty: "5 años de garantía",
+    stock: 10,
   },
   {
     id: 17,
@@ -201,6 +217,7 @@ export const productos = [
     description2: "Diseño moderno y elegante.",
     description3: "Ajustable en altura y dirección.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
   {
     id: 18,
@@ -213,6 +230,7 @@ export const productos = [
     description2: "Diseño contemporáneo para cualquier sala.",
     description3: "Construcción resistente y duradera.",
     warranty: "3 años de garantía",
+    stock: 10,
   },
   {
     id: 19,
@@ -225,6 +243,7 @@ export const productos = [
       "Combinación perfecta con camas matrimoniales o individuales.",
     description3: "Fácil de instalar y mantener.",
     warranty: "1 año de garantía",
+    stock: 10,
   },
   {
     id: 20,
@@ -237,5 +256,6 @@ export const productos = [
     description2: "Ampliamente utilizado en dormitorios y vestidores.",
     description3: "Marco elegante que resalta cualquier espacio.",
     warranty: "2 años de garantía",
+    stock: 10,
   },
 ];

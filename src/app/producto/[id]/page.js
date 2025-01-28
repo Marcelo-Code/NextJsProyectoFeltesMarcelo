@@ -6,26 +6,52 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import { productos } from "../../mock/productos";
+// import { productos } from "../../mock/productos";
 import Card from "@mui/material/Card";
-import Footer from "../../components/layout/footer/Footer";
-import NavBar from "../../components/layout/navBar/navBar";
 import { useRouter } from "next/navigation";
 import { use } from "react";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Counter } from "../../components/layout/counter/counter";
+import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore/lite";
+import { db } from "../../fireBase/config";
+import Footer from "../../components/layout/footer/Footer";
 
 const ProductDetail = ({ params }) => {
   const { id } = use(params);
   const router = useRouter();
-  const producto = productos.find((prod) => prod.id === parseInt(id));
-  const priceFormatted = producto.price.toLocaleString("es-AR", {
+  // const producto = productos.find((prod) => prod.id === parseInt(id));
+
+  const [filteredProduct, setFilteredProduct] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const docRef = doc(db, "DBProductosProyectoNextJs", id);
+        const docSnapshot = await getDoc(docRef);
+        if (docSnapshot.exists()) {
+          setFilteredProduct({ ...docSnapshot.data(), id: docSnapshot.id });
+        } else {
+          console.error("No se encontró el producto");
+        }
+      } catch (error) {
+        console.error("Error en el fetch de productos", error);
+      }
+    };
+
+    fetchProducts();
+  }, [id]);
+
+  if (!filteredProduct) return;
+
+  const priceFormatted = filteredProduct.price.toLocaleString("es-AR", {
     style: "currency",
     currency: "ARS",
   });
 
+  const counterProps = { stock: filteredProduct.stock, item: filteredProduct };
+
   return (
     <>
-      <NavBar />
       <div
         style={{
           width: "100vw",
@@ -46,8 +72,8 @@ const ProductDetail = ({ params }) => {
         >
           <CardMedia
             sx={{ width: 250, height: 250, margin: "auto", marginTop: 5 }}
-            image={producto.img}
-            title={producto.title}
+            image={filteredProduct.img}
+            title={filteredProduct.title}
           />
           <CardContent>
             <Typography
@@ -56,7 +82,7 @@ const ProductDetail = ({ params }) => {
               component="div"
               sx={{ textAlign: "center", height: 80 }}
             >
-              {producto.title}
+              {filteredProduct.title}
             </Typography>
             <Typography
               gutterBottom
@@ -70,38 +96,42 @@ const ProductDetail = ({ params }) => {
               variant="body2"
               sx={{ color: "text.secondary", height: 80 }}
             >
-              {producto.description1}
+              {filteredProduct.description1}
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: "text.secondary", height: 50 }}
             >
-              ✔️{producto.description2}
+              ✔️{filteredProduct.description2}
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: "text.secondary", height: 50 }}
             >
-              ✔️{producto.description3}
+              ✔️{filteredProduct.description3}
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: "text.secondary", height: 50 }}
             >
-              ✔️{producto.warranty}
+              ✔️{filteredProduct.warranty}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", height: 50 }}
+            >
+              ✔️ Stock {filteredProduct.stock} unidades
             </Typography>
           </CardContent>
           <CardActions
             sx={{
               flexDirection: "column",
               justifyContent: "center",
-              margin: 5,
+              marginBottom: 5,
               gap: 5,
             }}
           >
-            <Button variant="contained" startIcon={<AddShoppingCartIcon />}>
-              Agregar a Carrito
-            </Button>
+            <Counter {...counterProps} />
             <Button onClick={() => router.back()} size="small">
               Volver
             </Button>

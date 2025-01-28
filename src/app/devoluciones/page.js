@@ -1,14 +1,12 @@
 import React from "react";
-import Footer from "../components/layout/footer/Footer";
-import NavBar from "../components/layout/navBar/navBar";
 import { text1, text2 } from "./text";
 import Image from "next/image";
 import "../home.css";
+import Footer from "../components/layout/footer/Footer";
 
 const page = () => {
   return (
     <>
-      <NavBar />
       <div style={{ minHeight: "90vh", margin: 30 }}>
         <h2
           style={{

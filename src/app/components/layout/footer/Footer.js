@@ -5,7 +5,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="footer">
-      <span>1er Pre Entrega</span>
+      <span>2da Pre Entrega</span>
 
       <Image
         src="/images/logoNextJs.jpeg"
