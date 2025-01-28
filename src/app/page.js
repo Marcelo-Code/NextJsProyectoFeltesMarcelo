@@ -2,6 +2,13 @@ import Image from "next/image";
 import Footer from "../app/components/layout/footer/Footer";
 import "./home.css";
 
+export const metadata = {
+  title: "Ecommerce Logo",
+  description: "Ecommerce para mueblería virtual deco design",
+  keywords:
+    "Muebles modernos, Muebles para el hogar, Muebles de madera, Decoración de interiores, Muebles minimalistas, Sofás y sillones, Mesas de comedor, Sillas ergonómicas, Muebles personalizados, Muebles para oficinas, Diseño de muebles, Alacenas y estanterías, Mesas de centro, Muebles rústicos, Tienda de muebles online",
+};
+
 export default function Home() {
   const text1 =
     "En Deco Design, nos dedicamos a transformar espacios en ambientes que reflejen estilo, funcionalidad y comodidad. Somos una mueblería apasionada por el diseño, que combina calidad excepcional con piezas únicas para convertir cada rincón en una extensión de tu personalidad. Desde muebles modernos y minimalistas hasta opciones clásicas y atemporales, ofrecemos un catálogo variado que se adapta a cualquier necesidad y preferencia. Creemos que el mobiliario no solo debe decorar un espacio, sino también enriquecer tu vida diaria, aportando calidez y practicidad a cada momento.";

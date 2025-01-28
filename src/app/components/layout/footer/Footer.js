@@ -2,6 +2,13 @@ import React from "react";
 import "./footer.css";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Ecommerce Logo",
+  description: "Ecommerce para mueblería virtual deco design",
+  keywords:
+    "Muebles modernos, Muebles para el hogar, Muebles de madera, Decoración de interiores, Muebles minimalistas, Sofás y sillones, Mesas de comedor, Sillas ergonómicas, Muebles personalizados, Muebles para oficinas, Diseño de muebles, Alacenas y estanterías, Mesas de centro, Muebles rústicos, Tienda de muebles online",
+};
+
 const Footer = () => {
   return (
     <footer className="footer">
