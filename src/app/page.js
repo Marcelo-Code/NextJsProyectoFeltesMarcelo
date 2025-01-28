@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Footer from "../app/components/layout/footer/Footer";
 import "./home.css";
 
 export default function Home() {
@@ -8,49 +9,52 @@ export default function Home() {
     "Con más de una década de experiencia en el sector, nos hemos consolidado como una marca confiable que prioriza la satisfacción de nuestros clientes. Nuestro equipo de expertos trabaja contigo para entender tus ideas y ayudarte a encontrar las soluciones de diseño ideales para tu hogar o espacio de trabajo. En Deco Design, cada pieza cuenta con un propósito: ser un reflejo de tu esencia y una contribución al ambiente que sueñas. Estamos comprometidos con ofrecer productos de alta calidad y un servicio personalizado, porque sabemos que tu hogar merece lo mejor.";
 
   return (
-    <div
-      style={{
-        minHeight: "90vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        margin: "50px",
-      }}
-    >
-      <h2
+    <>
+      <div
         style={{
-          width: "100%",
-          paddingBottom: "10px",
-          borderBottom: "1px solid black",
-          marginBottom: "20px",
+          minHeight: "90vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          margin: "50px",
         }}
       >
-        Quienes Somos:
-      </h2>
-      <div className="gridContainer">
-        <div className="gridItem">
-          <div style={{ boxShadow: "0 0 15px black" }}>
-            <Image
-              src="/images/home1.jpg"
-              width={500}
-              height={200}
-              alt="deco design"
-            />
+        <h2
+          style={{
+            width: "100%",
+            paddingBottom: "10px",
+            borderBottom: "1px solid black",
+            marginBottom: "20px",
+          }}
+        >
+          Quienes Somos:
+        </h2>
+        <div className="gridContainer">
+          <div className="gridItem">
+            <div style={{ boxShadow: "0 0 15px black" }}>
+              <Image
+                src="/images/home1.jpg"
+                width={500}
+                height={200}
+                alt="deco design"
+              />
+            </div>
           </div>
-        </div>
-        <div className="gridItem">{text1}</div>
-        <div className="gridItem">
-          <div style={{ boxShadow: "0 0 15px black" }}>
-            <Image
-              src="/images/home2.jpg"
-              width={500}
-              height={200}
-              alt="deco design"
-            />
+          <div className="gridItem">{text1}</div>
+          <div className="gridItem">
+            <div style={{ boxShadow: "0 0 15px black" }}>
+              <Image
+                src="/images/home2.jpg"
+                width={500}
+                height={200}
+                alt="deco design"
+              />
+            </div>
           </div>
+          <div className="gridItem">{text2}</div>
         </div>
-        <div className="gridItem">{text2}</div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
