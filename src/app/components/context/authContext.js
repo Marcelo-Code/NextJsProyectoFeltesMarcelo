@@ -22,26 +22,21 @@ export const AuthProvider = ({ children }) => {
   });
 
   const registerUser = async (values) => {
-    // const userCredential =
-    await createUserWithEmailAndPassword(auth, values.email, values.password);
-    // console.log(userCredential);
-    // const user = userCredential.user;
-    // setUser({
-    //   logged: true,
-    //   email: user.email,
-    //   user: user.uid,
-    // });
+    try {
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
+    } catch (error) {
+      console.error("Error al registrar usuario: ", error);
+      alert("Hubo un error al registrarse. Intenta nuevamente.");
+    }
   };
 
   const loginUser = async (values) => {
-    // const userCredential =
-    await signInWithEmailAndPassword(auth, values.email, values.password);
-    // const user = userCredential.user;
-    // setUser({
-    //   logged: true,
-    //   email: user.email,
-    //   user: user.uid,
-    // });
+    try {
+      await signInWithEmailAndPassword(auth, values.email, values.password);
+    } catch (error) {
+      console.error("Error al iniciar sesión: ", error);
+      alert("Hubo un error al iniciar sesión. Verifica tus credenciales.");
+    }
   };
 
   const logoutUser = async () => {
