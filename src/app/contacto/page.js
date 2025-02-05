@@ -1,16 +1,16 @@
 "use client";
-import { useState } from "react";
+// import { useState } from "react";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import "./contacto.css";
 import Footer from "../components/layout/footer/Footer";
 
-// export default function Contacto() {
-//   const [form, setForm] = useState({
-//     name: "",
-//     email: "",
-//     message: "",
-//   });
+export default function Contacto() {
+  //   const [form, setForm] = useState({
+  //     name: "",
+  //     email: "",
+  //     message: "",
+  //   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
