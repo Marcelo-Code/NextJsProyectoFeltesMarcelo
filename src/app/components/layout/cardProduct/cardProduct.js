@@ -7,10 +7,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/navigation"; // Importa el router
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 
-const CardProduct = ({ id, title, price, category, img, description1 }) => {
+const CardProduct = ({ id, title, price, img, description1 }) => {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
 

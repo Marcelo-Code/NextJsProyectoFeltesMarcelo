@@ -9,9 +9,9 @@ import HouseIcon from "@mui/icons-material/House";
 import { useState } from "react";
 import "./burgerMenu.css";
 import Link from "next/link";
-import { productos } from "../../../mock/productos";
-import { addDoc, collection } from "firebase/firestore/lite";
-import { db } from "../../../fireBase/config";
+// import { productos } from "../../../mock/productos";
+// import { addDoc, collection } from "firebase/firestore/lite";
+// import { db } from "../../../fireBase/config";
 
 const BurgerMenu = () => {
   //Lógica para cerrar el menú luego de hacer click en algunas de las opciones
@@ -20,17 +20,17 @@ const BurgerMenu = () => {
   const handleStateChange = (state) => setMenuOpen(state.isOpen);
   const closeMenu = () => setMenuOpen(false);
 
-  const addProductsToDB = async () => {
-    try {
-      await Promise.all(
-        productos.forEach((product) => {
-          addDoc(collection(db, "DBProductosProyectoNextJs"), product);
-        })
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const addProductsToDB = async () => {
+  //   try {
+  //     await Promise.all(
+  //       productos.forEach((product) => {
+  //         addDoc(collection(db, "DBProductosProyectoNextJs"), product);
+  //       })
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Menu
