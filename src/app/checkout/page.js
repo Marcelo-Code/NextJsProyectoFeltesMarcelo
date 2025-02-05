@@ -5,15 +5,14 @@ import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import "./checkout.css";
 import { useEffect, useState, useRef } from "react";
 import { UseCartContext } from "../components/context/cartContext";
+import Loading from "../loading";
 
 const Checkout = () => {
   const { cart, formatPrice, generatePurchaseOrder, deleteAllProducts } =
     UseCartContext();
   const [orderId, setOrderId] = useState(null);
+  const [total, setTotal] = useState(null);
   const [cartDetail, setCartDetail] = useState(null);
-  const total = cart.reduce((acc, producto) => {
-    return acc + producto.price * producto.quantity;
-  }, 0);
 
   const orderGeneratedRef = useRef(false);
 
@@ -24,14 +23,26 @@ const Checkout = () => {
         .then((response) => {
           setOrderId(response);
           setCartDetail(cart);
+          setTotal(
+            cart.reduce((acc, producto) => {
+              return acc + producto.price * producto.quantity;
+            }, 0)
+          );
           deleteAllProducts();
           console.log("orden generada");
+          console.log(total);
         })
         .catch((error) => console.log(error));
     }
-  }, [cart, generatePurchaseOrder]);
+  }, [cart, generatePurchaseOrder, deleteAllProducts, total]);
 
-  if (!orderId) return;
+  if (!orderId || !cartDetail) return <Loading />;
+
+  // const total = cart.reduce((acc, producto) => {
+  //   return acc + producto.price * producto.quantity;
+  // }, 0);
+
+  console.log(total);
 
   return (
     <>
