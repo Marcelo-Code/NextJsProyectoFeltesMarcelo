@@ -49,7 +49,6 @@ const page = () => {
           </div>
           <div className="gridItem">{text2}</div>
         </div>
-        {/* <div style={{ height: "90vh" }}> */}
       </div>
       <Footer />
     </>

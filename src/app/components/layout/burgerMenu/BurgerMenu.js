@@ -4,6 +4,7 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
+import PersonIcon from "@mui/icons-material/Person";
 import HouseIcon from "@mui/icons-material/House";
 import { useState } from "react";
 import "./burgerMenu.css";
@@ -67,6 +68,12 @@ const BurgerMenu = () => {
             <li className="bm-item">
               <AssignmentReturnIcon />
               <span style={{ paddingLeft: "10px" }}>Devoluciones</span>
+            </li>
+          </Link>
+          <Link href={"/admin"} onClick={closeMenu}>
+            <li className="bm-item">
+              <PersonIcon />
+              <span style={{ paddingLeft: "10px" }}>Ingresar</span>
             </li>
           </Link>
 

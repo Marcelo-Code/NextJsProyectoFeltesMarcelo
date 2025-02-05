@@ -5,13 +5,15 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Link from "next/link";
-import { UseCartContext } from "../../cartContext/cartContext";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { UseCartContext } from "../../context/cartContext";
 
 function Carrito() {
+  const router = useRouter();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -60,7 +62,7 @@ function Carrito() {
           width: "100%",
           height: "85%",
           overflowY: "auto",
-          scrollbarWidth: "thin" /* Scroll angosto para Firefox */,
+          scrollbarWidth: "thin",
         }}
       >
         <h3
@@ -126,7 +128,11 @@ function Carrito() {
                 </tr>
                 <tr>
                   <td
-                    style={{ display: "flex", justifyContent: "space-around" }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
                   >
                     <b>SUBTOTAL:</b>
                   </td>
@@ -167,10 +173,14 @@ function Carrito() {
       </div>
       <div>
         <Button
+          onClick={() => {
+            router.push("/checkout");
+          }}
           sx={{ color: "white", width: "100%" }}
           startIcon={<ShoppingCartCheckoutIcon />}
+          disabled={cart.length === 0 ? true : false}
         >
-          Finalizar Compra
+          CheckOut
         </Button>
         <Button
           onClick={() => deleteAllProducts()}

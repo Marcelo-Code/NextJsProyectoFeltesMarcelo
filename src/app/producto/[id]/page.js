@@ -12,34 +12,24 @@ import { useRouter } from "next/navigation";
 import { use } from "react";
 import { Counter } from "../../components/layout/counter/counter";
 import { useState, useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore/lite";
-import { db } from "../../fireBase/config";
 import Footer from "../../components/layout/footer/Footer";
+import { UseCartContext } from "../../components/context/cartContext";
 
 const ProductDetail = ({ params }) => {
   const { id } = use(params);
   const router = useRouter();
+  const { fetchProductById } = UseCartContext();
   // const producto = productos.find((prod) => prod.id === parseInt(id));
 
   const [filteredProduct, setFilteredProduct] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const docRef = doc(db, "DBProductosProyectoNextJs", id);
-        const docSnapshot = await getDoc(docRef);
-        if (docSnapshot.exists()) {
-          setFilteredProduct({ ...docSnapshot.data(), id: docSnapshot.id });
-        } else {
-          console.error("No se encontró el producto");
-        }
-      } catch (error) {
-        console.error("Error en el fetch de productos", error);
-      }
-    };
-
-    fetchProducts();
-  }, [id]);
+    fetchProductById(id)
+      .then((response) => {
+        setFilteredProduct(response);
+      })
+      .catch((error) => console.log(error));
+  }, [fetchProductById, id]);
 
   if (!filteredProduct) return;
 

@@ -29,9 +29,9 @@ const CardProduct = ({ id, title, price, category, img, description1 }) => {
   });
 
   return (
-    <Card sx={{ maxWidth: 345, height: 600, boxShadow: "0 0 15px black" }}>
+    <Card sx={{ width: 300, height: 600, boxShadow: "0 0 15px black" }}>
       <CardMedia
-        sx={{ width: 250, height: 250, margin: "auto", marginTop: 5 }}
+        sx={{ width: 200, height: 200, margin: "auto", marginTop: 5 }}
         image={img}
         title={title}
       />

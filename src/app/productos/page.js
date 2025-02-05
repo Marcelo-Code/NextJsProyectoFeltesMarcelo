@@ -1,34 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
 import CardProduct from "../components/layout/cardProduct/cardProduct";
-import { db } from "../fireBase/config";
-import { collection, getDocs } from "firebase/firestore/lite";
+
 import Footer from "../components/layout/footer/Footer";
+import { UseCartContext } from "../components/context/cartContext";
 
 const Productos = () => {
   const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const { fetchProducts } = UseCartContext();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await getDocs(
-          collection(db, "DBProductosProyectoNextJs")
-        );
-        const array = response.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        });
-        setProducts(array);
-      } catch (error) {
-        console.log("Error en el fetch de productos", error);
-      }
-    };
-    fetchProducts();
-  }, []);
+    fetchProducts()
+      .then((response) => {
+        setProducts(response);
+      })
+      .catch((error) => console.log(error));
+  }, [fetchProducts]);
 
   // Función para manejar el filtro de categoría
-
   // Llamar a handleFilter cuando la categoría cambia
   useEffect(() => {
     const handleFilter = () => {

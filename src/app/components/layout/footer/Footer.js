@@ -12,7 +12,7 @@ export const metadata = {
 const Footer = () => {
   return (
     <footer className="footer">
-      <span>2da Pre Entrega</span>
+      <span>Entrega Final</span>
 
       <Image
         src="/images/logoNextJs.jpeg"

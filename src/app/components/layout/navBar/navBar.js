@@ -34,6 +34,7 @@ const NavBar = () => {
             <span className="title">Deco Design</span>
           </nav>
         </Link>
+
         <Carrito />
       </header>
     </>

@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { UseCartContext } from "../../cartContext/cartContext";
+import { UseCartContext } from "../../context/cartContext";
 
 export const Counter = ({ stock, item }) => {
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(0);
   const { addToCart, cart } = UseCartContext();
-  const [initialValue, setInitialValue] = useState(1);
+  const [initialValue, setInitialValue] = useState(0);
 
   useEffect(() => {
     const foundItem = cart.find((product) => product.id === item.id);
@@ -15,7 +15,7 @@ export const Counter = ({ stock, item }) => {
       setCounter(foundItem.quantity);
       setInitialValue(foundItem.quantity);
     } else {
-      setInitialValue(1);
+      setInitialValue(0);
     }
   }, [cart, item]);
 
@@ -50,6 +50,7 @@ export const Counter = ({ stock, item }) => {
             margin: "3px",
           }}
           onClick={decreaseCounter}
+          disabled={counter == initialValue ? true : false}
         >
           -
         </Button>
@@ -66,6 +67,7 @@ export const Counter = ({ stock, item }) => {
             margin: "3px",
           }}
           onClick={increaseCounter}
+          disabled={counter === stock ? true : false}
         >
           +
         </Button>
@@ -74,6 +76,7 @@ export const Counter = ({ stock, item }) => {
         onClick={() => addToCart({ ...item, quantity: counter })}
         variant="contained"
         startIcon={<AddShoppingCartIcon />}
+        disabled={counter === initialValue ? true : false}
       >
         Agregar
       </Button>
