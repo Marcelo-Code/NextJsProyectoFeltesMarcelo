@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "./components/layout/navBar/navBar";
 import { CartProvider } from "./components/context/cartContext";
 import { AuthProvider } from "./components/context/authContext";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
           <CartProvider>
             <NavBar />
             {children}
+            <SpeedInsights />
           </CartProvider>
         </AuthProvider>
       </body>
