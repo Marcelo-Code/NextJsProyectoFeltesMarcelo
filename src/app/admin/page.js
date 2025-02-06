@@ -46,10 +46,12 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchProducts().then((response) => {
-      setProducts(response);
-      console.log(response);
-    });
+    fetchProducts()
+      .then((response) => {
+        setProducts(response);
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
   }, [fetchProducts, updateList]);
 
   if (!products || products.length === 0) return <Loading />;
