@@ -148,8 +148,10 @@ export const CartProvider = ({ children }) => {
         values
       );
       console.log("Producto creado exitosamente: ", docRef.id);
+      successAlert("Producto creado exitosamente");
     } catch (error) {
       console.log("Error al crear el producto: ", error);
+      errorAlert("Error al crear el producto");
     }
   };
 

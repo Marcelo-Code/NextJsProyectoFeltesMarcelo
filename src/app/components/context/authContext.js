@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(false);
     } catch (error) {
       console.error("Error al iniciar sesión: ", error);
-      alert("Hubo un error al iniciar sesión. Verifica tus credenciales.");
+      errorAlert("Hubo un error al iniciar sesión. Verifica tus credenciales.");
       setIsLoading(false);
     }
   };
