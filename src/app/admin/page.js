@@ -48,6 +48,8 @@ const Page = () => {
     setPage(0);
   };
 
+  console.log("antes del fetch");
+
   useEffect(() => {
     if (user?.logged) {
       fetchProducts()

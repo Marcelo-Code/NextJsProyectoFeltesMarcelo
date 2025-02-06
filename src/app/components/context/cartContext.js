@@ -24,8 +24,6 @@ export const UseCartContext = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  console.log("antes del fetch");
-
   //Fetch de productos a Firebase
 
   const fetchProducts = async () => {
