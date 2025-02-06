@@ -52,7 +52,7 @@ const Page = () => {
     });
   }, [fetchProducts, updateList]);
 
-  if (!products) return <Loading />;
+  if (!products || products.length === 0) return <Loading />;
 
   return (
     <>
