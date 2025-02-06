@@ -8,7 +8,7 @@ import {
   signOut,
   signInWithPopup,
 } from "firebase/auth";
-import { confirmAlert } from "../layout/alerts/alerts";
+import { confirmAlert, errorAlert } from "../layout/alerts/alerts";
 
 const AuthContext = createContext();
 
@@ -22,6 +22,10 @@ export const AuthProvider = ({ children }) => {
   });
 
   const registerUser = async (values) => {
+    if (!values?.email || !values?.password) {
+      errorAlert("Completa todos los campos para registrarte");
+      return;
+    }
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
     } catch (error) {
@@ -31,6 +35,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const loginUser = async (values) => {
+    if (!values?.email || !values?.password) {
+      errorAlert("Completa todos los campos para iniciar sesión");
+      return;
+    }
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
     } catch (error) {
@@ -50,13 +58,18 @@ export const AuthProvider = ({ children }) => {
   };
 
   const googleLogin = async () => {
-    await signInWithPopup(auth, provider);
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Error en login con Google: ", error);
+      errorAlert("Hubo un error al iniciar sesión con Google");
+    }
   };
 
   //Observador de estado, en caso de que el usuario y el email sean válidos setea user
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log(user);
       if (user) {
         setUser({
@@ -72,6 +85,7 @@ export const AuthProvider = ({ children }) => {
         });
       }
     });
+    return () => unsubscribe(); // Limpieza del observador
   }, []);
 
   const authContextProps = {
