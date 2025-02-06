@@ -4,20 +4,24 @@ import CardProduct from "../components/layout/cardProduct/cardProduct";
 
 import Footer from "../components/layout/footer/Footer";
 import { UseCartContext } from "../components/context/cartContext";
+import { useAuthContext } from "../components/context/authContext";
 
 const Productos = () => {
   const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const { fetchProducts } = UseCartContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
-    fetchProducts()
-      .then((response) => {
-        setProducts(response);
-      })
-      .catch((error) => console.log(error));
-  }, [fetchProducts]);
+    if (user?.logged) {
+      fetchProducts()
+        .then((response) => {
+          setProducts(response);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [fetchProducts, user]);
 
   // Función para manejar el filtro de categoría
   // Llamar a handleFilter cuando la categoría cambia
