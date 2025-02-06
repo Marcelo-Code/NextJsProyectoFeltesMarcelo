@@ -5,6 +5,8 @@ import CardProduct from "../components/layout/cardProduct/cardProduct";
 import Footer from "../components/layout/footer/Footer";
 import { UseCartContext } from "../components/context/cartContext";
 
+import Loading from "../loading";
+
 const Productos = () => {
   const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -16,7 +18,10 @@ const Productos = () => {
       .then((response) => {
         setProducts(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        throw new Error("Error al obtener productos");
+      });
   }, [fetchProducts]);
 
   // Función para manejar el filtro de categoría
@@ -40,7 +45,7 @@ const Productos = () => {
     handleFilter();
   }, [selectedCategory, products]);
 
-  if (!filteredProducts) return;
+  if (!filteredProducts) return <Loading />;
 
   return (
     <>
@@ -55,6 +60,11 @@ const Productos = () => {
       >
         <select
           className="bg-white border border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded shadow-md hover:bg-blue-50 transition duration-200"
+          style={{
+            backgroundColor: "#ffffff",
+            color: "#003366",
+            borderColor: "#00509e",
+          }}
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >

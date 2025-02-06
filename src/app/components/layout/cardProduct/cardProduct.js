@@ -30,9 +30,10 @@ const CardProduct = ({ id, title, price, img, description1 }) => {
   return (
     <Card sx={{ width: 300, height: 600, boxShadow: "0 0 15px black" }}>
       <CardMedia
+        component="img"
         sx={{ width: 200, height: 200, margin: "auto", marginTop: 5 }}
-        image={img}
-        title={title}
+        src={img}
+        alt={title}
       />
       <CardContent>
         <Typography
