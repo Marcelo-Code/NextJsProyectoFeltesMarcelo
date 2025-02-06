@@ -16,6 +16,7 @@ import { UseCartContext } from "../components/context/cartContext";
 import Image from "next/image";
 import Loading from "../loading";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "../components/context/authContext";
 
 const Page = () => {
   const [page, setPage] = useState(0);
@@ -23,6 +24,8 @@ const Page = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [products, setProducts] = useState(null);
   const { fetchProducts, formatPrice, deleteProductDB } = UseCartContext();
+  const { user } = useAuthContext();
+
   const router = useRouter();
   const columns = [
     { id: "Nombre", label: "Nombre", minWidth: 170 },
@@ -46,13 +49,15 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchProducts()
-      .then((response) => {
-        setProducts(response);
-        console.log(response);
-      })
-      .catch((error) => console.log(error));
-  }, [fetchProducts, updateList]);
+    if (user?.logged) {
+      fetchProducts()
+        .then((response) => {
+          setProducts(response);
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [fetchProducts, updateList, user]);
 
   if (!products || products.length === 0) return <Loading />;
 
