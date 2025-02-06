@@ -61,8 +61,8 @@ export const AuthProvider = ({ children }) => {
       if (user) {
         setUser({
           logged: true,
-          email: user.email,
-          uid: user.uid,
+          email: user?.email || "sin email",
+          uid: user?.uid || "sin UID",
         });
       } else {
         setUser({
