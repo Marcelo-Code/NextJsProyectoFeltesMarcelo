@@ -21,16 +21,21 @@ export const AuthProvider = ({ children }) => {
     uid: null,
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const registerUser = async (values) => {
     if (!values?.email || !values?.password) {
       errorAlert("Completa todos los campos para registrarte");
       return;
     }
+    setIsLoading(true);
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error al registrar usuario: ", error);
       alert("Hubo un error al registrarse. Intenta nuevamente.");
+      setIsLoading(false);
     }
   };
 
@@ -39,11 +44,14 @@ export const AuthProvider = ({ children }) => {
       errorAlert("Completa todos los campos para iniciar sesión");
       return;
     }
+    setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error al iniciar sesión: ", error);
       alert("Hubo un error al iniciar sesión. Verifica tus credenciales.");
+      setIsLoading(false);
     }
   };
 
@@ -58,11 +66,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   const googleLogin = async () => {
+    setIsLoading(true);
     try {
       await signInWithPopup(auth, provider);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error en login con Google: ", error);
       errorAlert("Hubo un error al iniciar sesión con Google");
+      setIsLoading(false);
     }
   };
 
@@ -94,6 +105,7 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
     googleLogin,
+    isLoading,
   };
 
   return (

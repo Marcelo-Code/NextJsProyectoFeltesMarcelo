@@ -31,8 +31,6 @@ const Login = () => {
     });
   };
 
-  console.log("pantalla de login");
-
   return (
     <>
       <div
